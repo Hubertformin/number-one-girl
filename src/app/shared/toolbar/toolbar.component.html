@@ -1,0 +1,17 @@
+<nav id="toolbar" class="bg-pink-400 shadow">
+    <section class="toolbar-container">
+        <ul class="navs">
+            <li><a [routerLink]="'/'" class="nav-brand font-dancing-script">NumberOneGirl</a></li>
+            <li (click)="toggleMenu('#toolbar-menu')" class="cursor-pointer menu-icon text-white pr-3 text-2xl"><mat-icon aria-hidden="false" aria-label="Menu">menu</mat-icon></li>
+        </ul>
+        <ul id="toolbar-menu" class="navs">
+            <li><a routerLink="/home" routerLinkActive="active">Home</a></li>
+            <li><a routerLink="/episodes" routerLinkActive="active">Episodes</a></li>
+            <li><a routerLink="/contestants" routerLinkActive="active">Contestants</a></li>
+<!--            <li><a routerLink="/about" routerLinkActive="active">About</a></li>-->
+            <li class="px-3 pb-4 md:px-2 md:pb-0">
+                <button routerLink="/register" mat-raised-button color="accent">Register as Contestants</button>
+            </li>
+        </ul>
+    </section>
+</nav>

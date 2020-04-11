@@ -1,0 +1,42 @@
+@import "../../styles/responsive";
+.body {
+  background: url("../../../assets/images/register-bg.jpg") no-repeat center;
+  background-size: cover;
+  height: 100%;
+}
+.white-fill {
+  background: linear-gradient(to left, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.9));
+  height: 100%;
+}
+.content {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  @include md-screens {
+    width: 65%;
+  }
+}
+
+.card {
+  height: auto;
+  @include  md-screens {
+    min-height: 420px;
+  }
+}
+
+ol.list {
+  list-style-type: decimal;
+  font-size: 18px;
+  li {
+    margin-bottom: 15px;
+  }
+}
+
+/*=======================*/
+.example-month-picker .mat-calendar-period-button {
+  pointer-events: none;
+}
+
+.example-month-picker .mat-calendar-arrow {
+  display: none;
+}

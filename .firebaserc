@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "number-one-girl": {
+      "hosting": {
+        "number-one-girl": [
+          "number-one-girl"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "number-one-girl"
+  }
+}

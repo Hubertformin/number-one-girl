@@ -1,0 +1,78 @@
+@import "../../styles/responsive";
+#toolbar {
+  .toolbar-container {
+    background: inherit;
+    height: 100%;
+    display: block;
+    @include md-screens {
+      display: flex;
+      justify-content: space-between;
+      ul.navs {
+        width: auto;
+      }
+    }
+    ul.navs {
+      margin: 0;
+      align-items: center;
+      width: 100%;
+      height: auto;
+      background: inherit;
+      display: block;
+      &:first-of-type {
+        display: flex;
+        justify-content: space-between;
+        .menu-icon {
+          display: block;
+        }
+      }
+      &:last-of-type {
+        display: none;
+      }
+      @include md-screens {
+        display: flex !important;
+        height: 100%;
+        &:first-of-type {
+          .menu-icon {
+            display: none;
+          }
+        }
+      }
+
+      li {
+        list-style-type: none;
+        align-items: center;
+        height: 100%;
+        display: block;
+        @include md-screens {
+          display: inline-flex;
+        }
+        a {
+          display: block;
+          padding: 15px;
+          color: #fff;
+          font-weight: bold;
+          &:hover:not(.nav-brand) {
+            text-decoration: underline;
+          }
+          &.active {
+            background: rgba(0, 0, 0, 0.12);
+            border-radius: 0;
+          }
+          &.nav-brand {
+            font-size: 26px;
+          }
+          @include md-screens {
+            padding: 0 17px;
+            &.nav-brand {
+              font-size: 26px;
+              margin-right: 35px;
+            }
+            &.active {
+              border-radius: 10px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

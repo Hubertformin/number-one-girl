@@ -1,0 +1,95 @@
+<app-toolbar></app-toolbar>
+<main>
+    <section class="page-header bg-pink-400">
+        <h1 class="text-3xl font-dancing-script">Register as contestants</h1>
+    </section>
+    <section class="body">
+        <section class="white-fill pt-8 pb-24">
+            <div class="content">
+                <div class="card row bg-white shadow border rounded px-6 pt-8 pb-6">
+                    <div class="col-sm-5">
+                        <h1 class="text-3xl mb-4 font-bold text-pink-500">Become a Contestants?</h1>
+                        <ol class="ml-3 list">
+                            <li>
+                                <p>Fill the form with your correct details and submit</p>
+                            </li>
+                            <li>
+                              <p>You will be required to pay a fee of <strong>FCFA 10,000</strong></p>
+                            </li>
+                            <li>
+                              <p>If you're selected you'll be contacted</p>
+                            </li>
+                        </ol>
+                    </div>
+                    <div class="col-sm-7 md:border-l">
+                        <form class="px-6" [formGroup]="registerForm">
+                            <mat-form-field>
+                                <mat-label>Name</mat-label>
+                                <input type="text" formControlName="name" matInput placeholder="Name">
+                                <mat-hint *ngIf="name_control.invalid && (name_control.touched || name_control.dirty)">
+                                    <p class="text-red-500">Please insert a valid name</p>
+                                </mat-hint>
+                            </mat-form-field>
+                            <mat-form-field>
+                                <mat-label>Email</mat-label>
+                                <input type="text" formControlName="email" matInput placeholder="Email">
+                                <mat-hint *ngIf="email_control.invalid && (email_control.touched || email_control.dirty)">
+                                    <p class="text-red-500">Please insert a valid email</p>
+                                </mat-hint>
+                            </mat-form-field>
+                            <mat-form-field>
+                                <mat-label>Phone Number</mat-label>
+                                <button mat-button matPrefix>+237</button>
+                                <input type="text" formControlName="phoneNumber" matInput placeholder="Number">
+                                <mat-hint *ngIf="phoneNumber_control.invalid && (phoneNumber_control.touched || phoneNumber_control.dirty)">
+                                    <p class="text-red-500">Please insert a valid phone number</p>
+                                </mat-hint>
+                            </mat-form-field>
+                            <mat-form-field>
+                                <mat-label>Gender</mat-label>
+                                <mat-select formControlName="gender">
+                                    <mat-option value="Male">Male</mat-option>
+                                    <mat-option value="Female">Female</mat-option>
+                                </mat-select>
+                                <mat-hint *ngIf="gender_control.invalid && (gender_control.touched || gender_control.dirty)">
+                                    <p class="text-red-500">Please select your gender</p>
+                                </mat-hint>
+                            </mat-form-field>
+                            <mat-form-field>
+                                <mat-label>Date of birth</mat-label>
+                                <input matInput [matDatepicker]="dp" formControlName="dateOfBirth">
+                                <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+                                <mat-datepicker #dp
+                                                startView="multi-year"
+                                                panelClass="example-month-picker">
+                                </mat-datepicker>
+                                <mat-hint *ngIf="dateOfBirth_control.invalid && (dateOfBirth_control.touched || dateOfBirth_control.dirty)">
+                                    <p class="text-red-500">Please specify your birthday</p>
+                                </mat-hint>
+                            </mat-form-field>
+                            <!--Payment section-->
+                            <div class="payment">
+                                <p class="mt-4 mb-4"><small>Select your prefered payment method.</small></p>
+                                <mat-radio-group formControlName="paymentMethod">
+                                    <mat-radio-button color="primary" value="Orange Money">
+                                        <img src="assets/images/orange_money_1.jpg" class="mr-4" style="height: 48px;" alt="OrangeMoney Logo">
+                                    </mat-radio-button>
+                                    <mat-radio-button color="primary" value="MTN Mobile Money">
+                                        <img src="assets/images/mtn-mobile-money.jpg" style="height: 48px;" alt="MTNMoney Logo">
+                                    </mat-radio-button>
+                                </mat-radio-group>
+                                <p *ngIf="payment_control.invalid && (payment_control.touched || payment_control.dirty)">
+                                    <small class="text-red-500">Please select a payment method</small>
+                                </p>
+                            </div>
+                            <div class="actions pt-4 text-right">
+                                <button (click)="submitForm()" mat-raised-button color="primary">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+</main>
+<app-footer></app-footer>

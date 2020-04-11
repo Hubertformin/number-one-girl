@@ -1,0 +1,38 @@
+<app-toolbar></app-toolbar>
+<main>
+    <div class="page-container self-center">
+        <div class="message-container">
+            <svg class="message-icon" width="96" viewBox="0 0 1 1">
+                <defs>
+                    <mask id="404-mask">
+                        <rect x="0" y="0" width="1" height="1" fill="white" />
+                        <text x="0.5"
+                              y="0.65"
+                              text-anchor="middle"
+                              font-size="0.4">
+                            404
+                        </text>
+                    </mask>
+                </defs>
+                <path mask="url(#404-mask)"
+                      fill="pink"
+                      d="M0.4625 0.01165063509
+           a0.075 0.075 0 0 1 0.075 0
+           l0.3666729559 0.2116987298
+           a0.075 0.075 0 0 1 0.0375 0.06495190528
+           l0 0.4233974596
+           a0.075 0.075 0 0 1 -0.0375 0.06495190528
+           l-0.3666729559 0.2116987298
+           a0.075 0.075 0 0 1 -0.075 0
+           l-0.3666729559 -0.2116987298
+           a0.075 0.075 0 0 1 -0.0375 -0.06495190528
+           l0 -0.4233974596
+           a0.075 0.075 0 0 1 0.0375 -0.06495190528 Z" />
+            </svg>
+            <span class="message-content">Page Not Found</span>
+        </div>
+        <div class="py-2 text-center">
+            <button mat-raised-button color="primary" routerLink="/">Go to Home page</button>
+        </div>
+    </div>
+</main>
