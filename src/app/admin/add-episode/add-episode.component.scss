@@ -1,0 +1,61 @@
+@import "../../styles/responsive";
+
+.uploadfilecontainer {
+  background-image: url("../../../assets/images/icons/icons8_upload_200px_1.png");
+  background-repeat: no-repeat;
+  background-size: 100px;
+  background-position: center;
+  height: 200px;
+  width: 80%;
+  background-color: transparent;
+  margin: 20px auto;
+  border: 2px dashed #c53030;
+  border-radius: 10px;
+}
+
+.uploadfilecontainer:hover {
+  cursor: pointer;
+  background-color: #000 !important;
+  opacity: 0.8;
+}
+
+.preview-container {
+  height: 310px;
+  position: relative;
+  margin-bottom: 3rem;
+  video {
+    height: 300px;
+    margin: auto;
+    border-radius: 15px;
+  }
+  div.editor {
+    padding: 10px;
+    text-align: center;
+    // background-color: rgba(0, 0, 0, 0.6);
+  }
+}
+
+.modal {
+  position: fixed;
+  display: none;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  .content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+    min-width: 90%;
+    background-color: #424242;
+  }
+  @include md-screens {
+    left: 229px;
+    .content {
+      min-width: 50%;
+    }
+  }
+}

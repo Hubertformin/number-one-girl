@@ -2,6 +2,7 @@ import { Component, Inject, OnInit, Optional, PLATFORM_ID } from '@angular/core'
 import { RESPONSE } from '@nguniversal/express-engine/tokens';
 import { Response } from 'express';
 import { isPlatformServer } from '@angular/common';
+import { SeoService } from '../../providers/seo.service';
 
 @Component({
   selector: 'app-page-not-found',
@@ -10,7 +11,8 @@ import { isPlatformServer } from '@angular/common';
 })
 export class PageNotFoundComponent implements OnInit {
 
-  constructor(@Inject(PLATFORM_ID) private readonly platformId: any, @Optional() @Inject(RESPONSE) res: Response) {
+  constructor(@Inject(PLATFORM_ID) private readonly platformId: any, @Optional() @Inject(RESPONSE) res: Response,
+              private seo: SeoService) {
     // `res` is the express response, only available on the server
     if (isPlatformServer(this.platformId)) {
       res.status(404);
@@ -18,6 +20,7 @@ export class PageNotFoundComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.seo.setTitle('Page Not Found');
   }
 
 }

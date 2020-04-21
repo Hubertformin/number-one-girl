@@ -67,11 +67,19 @@ export class DbService {
         return {id, ...data};
       })))
   }
-  getEpisode(id: string) {
-    return this.episodesCollection.doc(id).valueChanges();
+  getEpisode(episodeId: string) {
+    return this.episodesCollection.doc(episodeId).snapshotChanges()
+      .pipe(map(action => {
+        const id = action.payload.id;
+        const data = action.payload.data() as EpisodesModel;
+        return {id, ...data};
+      }));
   }
   addEpisode(episode: EpisodesModel) {
-    return this.episodesCollection.add(episode)
+    return this.episodesCollection.add(episode);
+  }
+  setEpisode(id: string, episode: EpisodesModel) {
+    return this.episodesCollection.doc(id).set(episode);
   }
   editEpisode(episode: EpisodesModel) {
     return this.episodesCollection.doc(episode.id).update(episode)

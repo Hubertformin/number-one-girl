@@ -12,14 +12,14 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$number-one-girl-primary: mat-palette($mat-pink, 200);
-$number-one-girl-accent: mat-palette($mat-light-blue, A200, A100, A400);
+$number-one-girl-primary: mat-palette($mat-red, 500);
+$number-one-girl-accent: mat-palette($mat-red);
 
 // The warn palette is optional (defaults to red).
 $number-one-girl-warn: mat-palette($mat-red);
 
 // Create the theme object (a Sass map containing all of the palettes).
-$number-one-girl-theme: mat-light-theme($number-one-girl-primary, $number-one-girl-accent, $number-one-girl-warn);
+$number-one-girl-theme: mat-dark-theme($number-one-girl-primary, $number-one-girl-accent, $number-one-girl-warn);
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component

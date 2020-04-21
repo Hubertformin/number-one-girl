@@ -1,5 +1,113 @@
 <app-toolbar></app-toolbar>
-<main class="px-6 py-8">
-    <p>Home</p>
+<main class="pb-8 md:pb-16">
+    <section class="overlay">
+        <div class="content pb-8 flex flex-column justify-content-end px-4 md:px-8">
+            <h1 class="font-dancing-script text-4xl md:text-6xl flex align-items-center">
+                <span>Numberonegirl</span>&nbsp;
+                <img src="assets/images/tv.png" height="60" width="60" alt="">
+            </h1>
+            <h2 class="text-lg md:text-xl">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam aut commodi doloremque et ex facilis fugit,
+                harum itaque magni minima molestias officia omnis perferendis porro, ratione repellendus unde? Cum, perspiciatis.
+            </h2>
+            <div class="py-3">
+                <button class="bg-red-700 hover:bg-red-700 text-white font-bold py-2 px-5 rounded">
+                    Watch
+                </button>
+                <span class="text-xl px-3">|</span>
+                <button class="bg-red-700 hover:bg-red-700 text-white font-bold py-2 px-5 rounded">
+                    Vote contestant
+                </button>
+            </div>
+        </div>
+    </section>
+<!--    contentants -->
+    <div id="contestants" class="py-6 md:py-16 px-4 md:px-10">
+        <div class="title border-b border-red-600 mb-4">
+            <h1 class="text-2xl my-3">Contestants</h1>
+        </div>
+        <div class="mb-6 md:mb-8">
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi doloremque ex magnam omnis
+                qui unde veniam vero.
+                A ad beatae, dolorum eaque magni, odio omnis perspiciatis, quis quo recusandae tenetur.
+            </p>
+        </div>
+        <div class="row">
+            <div class="col-sm-3 mb-10 md:mb-0">
+                <div class="contestant-card">
+                    <div class="card-header">
+                        <img src="../../../assets/images/contestant-04.jpg" class="fill-img" alt="">
+                    </div>
+                    <div class="card-body py-3 px-4">
+                        <h3 class="font-bold">Contestant</h3>
+                        <h4>24 years old</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3 mb-10 md:mb-0">
+                <div class="contestant-card">
+                    <div class="card-header">
+                        <img src="../../../assets/images/contestant-01.jpg" class="fill-img" alt="">
+                    </div>
+                    <div class="card-body py-3 px-4">
+                        <h3 class="font-bold">Contestant</h3>
+                        <h4>24 years old</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3 mb-10 md:mb-0">
+                <div class="contestant-card">
+                    <div class="card-header">
+                        <img src="../../../assets/images/contestant-02.jpg" class="fill-img" alt="">
+                    </div>
+                    <div class="card-body py-3 px-4">
+                        <h3 class="font-bold">Contestant</h3>
+                        <h4>24 years old</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3 mb-10 md:mb-0">
+                <div class="contestant-card">
+                    <div class="card-header">
+                        <img src="../../../assets/images/contestant-03.jpg" class="fill-img" alt="">
+                    </div>
+                    <div class="card-body py-3 px-4">
+                        <h3 class="font-bold">Contestant</h3>
+                        <h4>24 years old</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer py-3 flex justify-content-start px-8">
+            <a routerLink="/contestants" class="text-white hover:underline hover:text-red-600">View all</a>
+        </div>
+    </div>
+<!--    about section-->
+    <div id="about">
+        <div class="content py-6 md:py-16 px-4 md:px-10">
+            <div class="title border-b border-red-600 mb-6 md:mb-8">
+                <h1 class="text-2xl my-3">About</h1>
+            </div>
+            <div class="text text-lg md:text-xl">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur et odit
+                porro quia sed sequi totam vel!
+                Nisi omnis quia repellendus? Assumenda culpa debitis impedit itaque iusto saepe sunt vitae?
+
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, dolor odio. Aut et ex
+                expedita impedit ipsum iste minus, mollitia natus, neque officia provident quam, quibusdam
+                quo sunt suscipit tenetur.
+            </div>
+            <div class="py-3 text-center">
+                <button class="bg-red-700 hover:bg-red-700 mb-6 md:mb-0 text-white font-bold py-2 px-5 rounded">
+                    Become a contestant
+                </button>
+                <span class="text-xl px-3 hidden md:inline">|</span>
+                <button class="bg-red-700 hover:bg-red-700 text-white font-bold py-2 px-5 rounded">
+                    Vote for contestant
+                </button>
+            </div>
+        </div>
+    </div>
 </main>
 <app-footer></app-footer>

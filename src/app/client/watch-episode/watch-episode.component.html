@@ -1,18 +1,15 @@
 <app-toolbar></app-toolbar>
 <main class="pb-8 md:pb-32">
     <section class="px-32 pt-16">
-        <app-player></app-player>
+        <app-player [video]="episode"></app-player>
         <div class="video-info pt-8">
             <h1 class="font-bold text-4xl pl-4">
-                Episode 21: How to change your dragon in easy steps
+                Episode {{episode.episodeNumber}}: {{episode.title}}
             </h1>
             <div class="meta pl-8 text-gray-700">
                 <p><strong>23K Views</strong></p>
                 <p><strong>Feb 23, 2020</strong></p>
-                <div class="description mt-4">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. A architecto aspernatur beatae, eligendi fuga repellendus suscipit. Accusantium, blanditiis earum eos hic, incidunt labore mollitia obcaecati quas quisquam sed, sequi vitae!
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid at fugiat ipsa maxime non omnis quasi quos reiciendis rem totam. Amet aspernatur consectetur corporis deserunt, incidunt porro qui reiciendis sunt?
-                </div>
+                <div class="description mt-4" [innerText]="episode.description"></div>
             </div>
         </div>
     </section>

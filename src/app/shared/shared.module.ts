@@ -7,13 +7,19 @@ import { MatComponentsModule } from '../mat-components.module';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { PlayerComponent } from './player/player.component';
 import { PlyrModule } from './player/plyr/lib/plyr.module';
+import { DragDropDirective } from '../directives/drag-drop.directive';
+import { ObjectUrlPipe } from '../pipes/object-url.pipe';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatCommonModule } from '@angular/material/core';
 
 const modules = [
-  MatComponentsModule
+  MatComponentsModule,
+  ReactiveFormsModule,
+  FormsModule
 ];
 
 @NgModule({
-  declarations: [ToolbarComponent, FooterComponent, PageNotFoundComponent, PlayerComponent],
+  declarations: [ToolbarComponent, FooterComponent, PageNotFoundComponent, PlayerComponent, DragDropDirective, ObjectUrlPipe],
   imports: [
     CommonModule,
     ...modules,
@@ -24,7 +30,10 @@ const modules = [
     ToolbarComponent,
     FooterComponent,
     ...modules,
-    PlayerComponent
+    PlayerComponent,
+    MatCommonModule,
+    DragDropDirective,
+    ObjectUrlPipe
   ]
 })
 export class SharedModule { }

@@ -4,14 +4,18 @@ import { CommonModule } from '@angular/common';
 import { AdminRoutingModule } from './admin-routing.module';
 import { ViewContestantsComponent } from './view-contestants/view-contestants.component';
 import { SharedModule } from '../shared/shared.module';
+import { AdminComponent } from './admin.component';
+import { AddEpisodeComponent } from './add-episode/add-episode.component';
+import { ViewEpisodesComponent } from './view-episodes/view-episodes.component';
+import { AddContestantComponent } from './add-contestant/add-contestant.component';
 
 
 @NgModule({
-  declarations: [ViewContestantsComponent],
+  declarations: [ViewContestantsComponent, AdminComponent, AddEpisodeComponent, ViewEpisodesComponent, AddContestantComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,
-    SharedModule
+    SharedModule,
   ]
 })
 export class AdminModule { }

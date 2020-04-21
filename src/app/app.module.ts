@@ -20,6 +20,10 @@ import localeCMEN from '@angular/common/locales/en-CM';
 import localeCMENExtra from '@angular/common/locales/extra/en-CM';
 import { registerLocaleData } from '@angular/common';
 import { WatchEpisodeComponent } from './client/watch-episode/watch-episode.component';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { AngularFireAuthGuardModule } from '@angular/fire/auth-guard';
+import { EpisodeResolverService } from './resolvers/episode-resolver.service';
 
 registerLocaleData(localeCMEN, 'en-CM', localeCMENExtra);
 
@@ -36,6 +40,9 @@ registerLocaleData(localeCMEN, 'en-CM', localeCMENExtra);
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
     AngularFirestoreModule,
+    AngularFireAuthModule,
+    AngularFireStorageModule,
+    AngularFireAuthGuardModule,
     RouterModule.forRoot([
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: 'home', component: HomeComponent },
@@ -43,7 +50,13 @@ registerLocaleData(localeCMEN, 'en-CM', localeCMENExtra);
       { path: 'contestants', component:  ContestantsComponent},
       { path: 'about', component: AboutComponent },
       { path: 'register', component: RegisterComponent },
-      { path: 'watch/:id', component: WatchEpisodeComponent },
+      {
+        path: 'watch/:id',
+        component: WatchEpisodeComponent,
+        resolve: {
+          episode: EpisodeResolverService
+        }
+      },
       {
         path: 'admin',
         loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)

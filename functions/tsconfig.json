@@ -1,8 +1,11 @@
 {
   "compilerOptions": {
     "module": "commonjs",
+    "baseUrl": "./",
     "noImplicitReturns": true,
+    "noImplicitAny": false,
     "noUnusedLocals": true,
+    "typeRoots": ["node_modules/@types"],
     "outDir": "lib",
     "sourceMap": true,
     "strict": true,

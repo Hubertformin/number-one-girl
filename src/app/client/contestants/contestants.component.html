@@ -1,7 +1,76 @@
 <app-toolbar></app-toolbar>
 <main>
-    <section class="page-header bg-pink-400">
+    <section class="page-header bg-black">
         <h1 class="text-3xl font-dancing-script">Contestants</h1>
+    </section>
+    <section class="px-6 md:px-16 py-4 md:pt-6 md:pb-32">
+        <div class="title mb-10">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci autem consequuntur culpa cupiditate distinctio earum et illum obcaecati odit perspiciatis placeat porro provident quae quas quasi soluta sunt, vero voluptate.
+        </div>
+        <!--tab-->
+        <mat-tab-group>
+            <mat-tab label="Present contestants">
+                <div class="row py-10">
+                    <div class="col-sm-3 mb-10 md:mb-0">
+                        <div class="contestant-card border-b border-gray-800">
+                            <div class="card-header">
+                                <img src="../../../assets/images/contestant-04.jpg" class="fill-img" alt="">
+                            </div>
+                            <div class="card-body py-3 px-4">
+                                <h3 class="font-bold">Contestant</h3>
+                                <h4>24 years old</h4>
+                                <div class="action py-2 text-center">
+                                    <button (click)="openDialog()" style="width: 100%;" mat-raised-button color="primary">Vote</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 mb-10 md:mb-0">
+                        <div class="contestant-card border-b border-gray-800">
+                            <div class="card-header">
+                                <img src="../../../assets/images/contestant-01.jpg" class="fill-img" alt="">
+                            </div>
+                            <div class="card-body py-3 px-4">
+                                <h3 class="font-bold">Contestant</h3>
+                                <h4>24 years old</h4>
+                                <div class="action py-2 text-center">
+                                    <button style="width: 100%;" mat-raised-button color="primary">Vote</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 mb-10 md:mb-0">
+                        <div class="contestant-card border-b border-gray-800">
+                            <div class="card-header">
+                                <img src="../../../assets/images/contestant-02.jpg" class="fill-img" alt="">
+                            </div>
+                            <div class="card-body py-3 px-4">
+                                <h3 class="font-bold">Contestant</h3>
+                                <h4>24 years old</h4>
+                                <div class="action py-2 text-center">
+                                    <button style="width: 100%;" mat-raised-button color="primary">Vote</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 mb-10 md:mb-0">
+                        <div class="contestant-card border-b border-gray-800">
+                            <div class="card-header">
+                                <img src="../../../assets/images/contestant-03.jpg" class="fill-img" alt="">
+                            </div>
+                            <div class="card-body py-3 px-4">
+                                <h3 class="font-bold">Contestant</h3>
+                                <h4>24 years old</h4>
+                                <div class="action py-2 text-center">
+                                    <button style="width: 100%;" mat-raised-button color="primary">Vote</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </mat-tab>
+            <mat-tab label="Past contestants"></mat-tab>
+        </mat-tab-group>
     </section>
 </main>
 <app-footer></app-footer>

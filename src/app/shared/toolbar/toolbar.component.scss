@@ -51,12 +51,11 @@
           padding: 15px;
           color: #fff;
           font-weight: bold;
-          &:hover:not(.nav-brand) {
-            text-decoration: underline;
+          &:hover:not(.nav-brand, .active) {
+            color: #ddd;
           }
           &.active {
-            background: rgba(0, 0, 0, 0.12);
-            border-radius: 0;
+            color: #f44336;
           }
           &.nav-brand {
             font-size: 26px;

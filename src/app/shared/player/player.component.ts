@@ -1,36 +1,47 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import Plyr from 'plyr';
 import { DashjsPlyrDriver } from './driver/player.driver';
+import { EpisodesModel } from '../../models/episodes.model';
 
 @Component({
   selector: 'app-player',
   templateUrl: './player.component.html',
   styleUrls: ['./player.component.scss']
 })
-export class PlayerComponent implements OnInit {
+export class PlayerComponent implements OnInit, OnChanges {
+
+  constructor() { }
+  @Input() video: EpisodesModel;
 
   options: Plyr.Options = {
-    captions: { active: true, update: true, language: 'en' },
+    captions: { active: false, update: true, language: 'en' },
   };
 
-  poster = 'https://bitdash-a.akamaihd.net/content/sintel/poster.png';
+  poster = 'https://res.cloudinary.com/thinkinary/image/upload/v1585152691/vdrmtkaxkalke9gesour.jpg';
 
-  sources: Plyr.Source[] = [{
-    type: 'video',
-    src: 'https://bitmovin-a.akamaihd.net/content/sintel/sintel.mpd',
-  }];
+  sources: Plyr.Source[];
 
   dashjsDriver1 = new DashjsPlyrDriver(true);
 
   dashjsDriver2 = new DashjsPlyrDriver(false);
 
-  constructor() { }
+  ngOnChanges(changes: SimpleChanges): void {
+    // this.sources = [{
+    //   type: 'video',
+    //   src: this.video.url
+    // }];
+    // console.log(this.video.url);
+  }
 
   ngOnInit() {
+    this.sources = [{
+      type: 'video',
+      src: this.video.url
+    }];
   }
 
   played() {
-    this.dashjsDriver2.load('https://bitmovin-a.akamaihd.net/content/sintel/sintel.mpd');
+    this.dashjsDriver2.load(this.video.url);
   }
 
 }

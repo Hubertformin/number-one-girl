@@ -1,0 +1,34 @@
+@import "../../styles/responsive";
+.content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.99));
+  height: 100%;
+}
+
+.overlay {
+  height: 70vh;
+  background: url("../../../assets/images/cover-image.jpg") no-repeat center;
+  background-size: cover;
+  position: relative;
+  color: white;
+  @include md-screens {
+    height: 80vh;
+  }
+}
+
+#about {
+  height: 531px;
+  background: url("../../../assets/images/action-05.jpg") no-repeat center;
+  background-size: cover;
+  position: relative;
+  .content {
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 1));
+  }
+  @include md-screens {
+    height: 400px;
+  }
+}

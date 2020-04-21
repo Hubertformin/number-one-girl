@@ -10,6 +10,10 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatTabsModule } from '@angular/material/tabs';
 
 const modules = [
   MatButtonModule,
@@ -21,7 +25,11 @@ const modules = [
   MatRadioModule,
   MatDatepickerModule,
   MatNativeDateModule,
-  MatToolbarModule
+  MatToolbarModule,
+  MatSidenavModule,
+  MatListModule,
+  MatSnackBarModule,
+  MatTabsModule
 ];
 
 @NgModule({

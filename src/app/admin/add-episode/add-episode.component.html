@@ -1,0 +1,74 @@
+<section class="body">
+    <section class="title bg-red-900 pt-6 pb-8 px-6">
+        <h1>Add episode</h1>
+    </section>
+<!--    -->
+    <section class="body px-6 py-10">
+        <div *ngIf="!file" class="uploadfilecontainer mb-10" (click)="fileInput.click()" appDragDrop (onFileDropped)="importFile($event)">
+            <input hidden type="file" #fileInput (change)="importFile($event.target.files)" accept="video/*">
+            <div class="h-full w-full flex py-4 justify-content-center align-items-end" style="background-color: transparent;">
+                <h1>Click here to add video or drop video here</h1>
+            </div>
+        </div>
+
+        <div *ngIf="file" class="preview-container">
+            <video controls muted>
+                <source [src]="file | objectUrl" />
+            </video>
+            <div class="editor">
+                <button (click)="deleteAttachment()" mat-stroked-button>Delete video</button>
+            </div>
+        </div>
+
+        <div class="form md:px-10" [formGroup]="episodeForm">
+            <mat-form-field>
+                <mat-label>Title</mat-label>
+                <input type="text" matInput placeholder="Title" formControlName="title">
+                <mat-hint *ngIf="(episodeForm.get('title').dirty || episodeForm.get('title').touched) && episodeForm.get('title').invalid">
+                    <p class="text-red-500">Please add this episode's title</p>
+                </mat-hint>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Episode number</mat-label>
+                <input type="number" min="1" matInput placeholder="Episode number" formControlName="episodeNumber">
+                <mat-hint *ngIf="(episodeForm.get('episodeNumber').dirty || episodeForm.get('episodeNumber').touched) && episodeForm.get('episodeNumber').invalid">
+                    <p class="text-red-500">Please specify episode's number</p>
+                </mat-hint>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Season</mat-label>
+                <input type="number" min="1" matInput placeholder="Episode number" formControlName="seasonNumber">
+                <mat-hint *ngIf="(episodeForm.get('seasonNumber').dirty || episodeForm.get('seasonNumber').touched) && episodeForm.get('seasonNumber').invalid">
+                    <p class="text-red-500">Please specify the season number</p>
+                </mat-hint>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Description</mat-label>
+                <textarea matInput placeholder="Description" rows="5" formControlName="description"></textarea>
+                <mat-hint *ngIf="(episodeForm.get('description').dirty || episodeForm.get('description').touched) && episodeForm.get('description').invalid">
+                    <p class="text-red-500">Please episode description</p>
+                </mat-hint>
+            </mat-form-field>
+            <!--save button-->
+            <div class="py-4">
+                <button (click)="submit()" mat-raised-button color="primary">Save</button>
+            </div>
+        </div>
+    </section>
+</section>
+<!--modal-->
+<section id="saveModal" class="modal">
+    <div class="content py-6 px-6">
+        <h3 class="mb-4">{{savingEpisode ? 'Saving episode...' : 'Uploading episode'}}</h3>
+        <mat-progress-bar *ngIf="savingEpisode" mode="indeterminate"></mat-progress-bar>
+        <mat-progress-bar *ngIf="!savingEpisode" mode="determinate" [value]="uploadPercent | async"></mat-progress-bar>
+        <div *ngIf="!savingEpisode" class="indicator py-3 flex justify-content-between">
+            <p>
+                <span class="bg-red-600 text-white px-1 py-1 rounded">{{(uploadPercent | async) | number : '1.2-2'}}%</span>
+            </p>
+            <div>
+                <button (click)="cancelUpload()" mat-raised-button color="primary">cancel</button>
+            </div>
+        </div>
+    </div>
+</section>

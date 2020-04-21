@@ -1,0 +1,57 @@
+
+<mat-sidenav-container class="sidenav-container h-full">
+    <mat-sidenav #drawer class="sidenav" fixedInViewport
+                 [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+                 [mode]="(isHandset$ | async) ? 'over' : 'side'"
+                 [opened]="(isHandset$ | async) === false">
+        <mat-toolbar color="primary"><span>{{appName}}<small>(Admin)</small></span></mat-toolbar>
+        <mat-nav-list>
+            <!--      <ul class="sidenav-group">-->
+            <!--        <li><a mat-list-item routerLink="/admin/dashboard" routerLinkActive="bg-theme-primary-transparent">Dashboard</a></li>-->
+            <!--      </ul>-->
+            <ul class="sidenav-group">
+                <li class="title">Episodes</li>
+                <li>
+                    <a mat-list-item routerLink="/admin/add-episode" routerLinkActive="bg-theme-primary-transparent">Add episode</a>
+                </li>
+                <li>
+                    <a mat-list-item routerLink="/admin/view-episodes" routerLinkActive="bg-theme-primary-transparent">View episodes</a>
+                </li>
+            </ul>
+            <ul class="sidenav-group">
+                <li class="title">Contestants</li>
+                <li>
+                    <a mat-list-item routerLink="/admin/add-contestant" routerLinkActive="bg-theme-primary-transparent">Add contestants</a>
+                </li>
+                <li>
+                    <a mat-list-item routerLink="/admin/view-contestants" routerLinkActive="bg-theme-primary-transparent">View contestants</a>
+                </li>
+            </ul>
+            <ul class="sidenav-group">
+                <li class="title">Client site</li>
+                <li><a mat-list-item target="_blank" href="/">Home page</a></li>
+            </ul>
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <mat-toolbar color="primary">
+            <button
+                    type="button"
+                    aria-label="Toggle sidenav"
+                    mat-icon-button
+                    (click)="drawer.toggle()"
+                    *ngIf="isHandset$ | async">
+                <mat-icon [inline]="true">menu</mat-icon>&nbsp;
+                <span class="ml-3">{{appName}}<small>(Admin)</small></span>
+            </button>
+            <span class="spacer"></span>
+            <span>
+        <button mat-button class="text-sm" (click)="logOut()">Logout</button>
+      </span>
+
+        </mat-toolbar>
+        <router-outlet></router-outlet>
+        <!-- Add Content Here -->
+    </mat-sidenav-content>
+</mat-sidenav-container>
+

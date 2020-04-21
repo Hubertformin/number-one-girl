@@ -9,16 +9,22 @@ import { RegisterComponent } from './register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ContestantsComponent } from './contestants/contestants.component';
 import { WatchEpisodeComponent } from './watch-episode/watch-episode.component';
+import { VoteContestantComponent } from './vote-contestant/vote-contestant.component';
 
 
 
 @NgModule({
-  declarations: [HomeComponent, EpisodesComponent, AboutComponent, RegisterComponent, ContestantsComponent, WatchEpisodeComponent],
+  declarations: [HomeComponent,
+    EpisodesComponent, AboutComponent,
+    RegisterComponent,
+    ContestantsComponent,
+    WatchEpisodeComponent,
+    VoteContestantComponent],
   imports: [
     CommonModule,
     ClientRoutingModule,
     SharedModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ]
 })
 export class ClientModule { }
