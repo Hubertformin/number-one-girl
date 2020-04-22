@@ -16,6 +16,15 @@ const storage = new Storage({keyFilename: SERVICE_ACCOUNT});
 // Max height and width of the thumbnail in pixels.
 const THUMB_MAX_WIDTH = 384;
 
+//The amount to pay for a vote in XCFA
+const VOTE_PRICE = 100; 
+
+//The amount paid by contestants in XCFA
+const CONTESTANT_PRICE = 5000;
+
+const STRIPE_SECRET_KEY = 'sk_live_vmIRAd5CWZ6n7RS11ND3fFsc';
+const stripe = require('stripe')(STRIPE_SECRET_KEY);
+
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
@@ -141,4 +150,40 @@ exports.onFileUploaded = functions.storage.object().onFinalize((object: any) => 
 
     return Promise.resolve();
   })
+});
+
+exports.createPaymentIntent = functions.https.onCall((data, context) => {
+  let amount;
+
+  if(data.item == 'vote')
+    amount = VOTE_PRICE;
+  else(data.item == 'contestant')
+    amount = CONTESTANT_PRICE;
+
+  const paymentIntent = stripe.paymentIntents.create({
+    amount: amount,
+    currency: 'xaf',
+    // Verify your integration in this guide by including this parameter
+    metadata: {integration_check: 'accept_a_payment'},
+  });
+
+  return admin.firestore().collection('payments').doc(paymentIntent.id).set({...paymentIntent, type: data.item}).then(()=>{
+    return paymentIntent.client_secret;
+  });
+
+});
+
+exports.updatePaymentIntent = functions.https.onCall((data, context) => {
+  let amount;
+
+  if(data.item == 'vote')
+    amount = VOTE_PRICE;
+  else(data.item == 'contestant')
+    amount = CONTESTANT_PRICE;
+
+  const paymentIntent = stripe.paymentIntents.update(data.id, {amount: amount});
+
+  return admin.firestore().collection('payments').doc(paymentIntent.id).set({...paymentIntent, type: data.item}).then(() => {
+    return paymentIntent.client_secret;
+  });
 });

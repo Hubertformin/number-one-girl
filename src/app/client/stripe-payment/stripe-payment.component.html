@@ -1,0 +1,10 @@
+<form #checkout="ngForm" (ngSubmit)="onSubmit($event)" class="checkout">
+    <div class="form-row">
+      <label for="card-info">Enter Credit/Debit Card</label>
+      <div id="card-info" #cardInfo></div>
+
+      <div id="card-errors" role="alert" *ngIf="cardErrors">{{ error }}</div>
+    </div>
+    <button type="submit">Pay $777</button>
+  
+</form>
