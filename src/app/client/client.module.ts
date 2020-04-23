@@ -10,6 +10,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ContestantsComponent } from './contestants/contestants.component';
 import { WatchEpisodeComponent } from './watch-episode/watch-episode.component';
 import { VoteContestantComponent } from './vote-contestant/vote-contestant.component';
+import { StripePaymentComponent } from './stripe-payment/stripe-payment.component';
 
 
 
@@ -19,7 +20,8 @@ import { VoteContestantComponent } from './vote-contestant/vote-contestant.compo
     RegisterComponent,
     ContestantsComponent,
     WatchEpisodeComponent,
-    VoteContestantComponent],
+    VoteContestantComponent,
+    StripePaymentComponent],
   imports: [
     CommonModule,
     ClientRoutingModule,

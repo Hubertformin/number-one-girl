@@ -23,6 +23,7 @@ import { WatchEpisodeComponent } from './client/watch-episode/watch-episode.comp
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthGuardModule } from '@angular/fire/auth-guard';
+import { AngularFireFunctionsModule } from '@angular/fire/functions'
 import { EpisodeResolverService } from './resolvers/episode-resolver.service';
 import { AdminGuard } from './guards/admin.guard';
 
@@ -44,6 +45,7 @@ registerLocaleData(localeCMEN, 'en-CM', localeCMENExtra);
     AngularFireAuthModule,
     AngularFireStorageModule,
     AngularFireAuthGuardModule,
+    AngularFireFunctionsModule,
     RouterModule.forRoot([
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: 'home', component: HomeComponent },
