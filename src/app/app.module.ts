@@ -24,6 +24,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthGuardModule } from '@angular/fire/auth-guard';
 import { EpisodeResolverService } from './resolvers/episode-resolver.service';
+import { AdminGuard } from './guards/admin.guard';
 
 registerLocaleData(localeCMEN, 'en-CM', localeCMENExtra);
 
@@ -58,8 +59,13 @@ registerLocaleData(localeCMEN, 'en-CM', localeCMENExtra);
         }
       },
       {
+        path: 'auth',
+        loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
+      },
+      {
         path: 'admin',
-        loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
+        loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),
+        canActivate: [AdminGuard]
       },
       { path: '**', component: PageNotFoundComponent }
     ]),

@@ -5,6 +5,9 @@ export interface EpisodesModel {
   description?: string;
   seasonNumber?: number;
   episodeNumber?: number;
+  thumbnail?: {
+    medium: string;
+  }
   viewsCount?: number;
   createdAt?: Date;
 }

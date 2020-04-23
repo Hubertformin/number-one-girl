@@ -1,0 +1,24 @@
+@import "../../styles/responsive";
+.form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  @include md-screens {
+    width: 35%;
+  }
+}
+
+.page {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  background: url("../../../assets/images/action-04.jpg") no-repeat center;
+  background-size: cover;
+}
+.wrapper {
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 1));
+}

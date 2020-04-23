@@ -29,17 +29,17 @@
                 </mat-hint>
             </mat-form-field>
             <mat-form-field>
+                <mat-form-field>
+                    <mat-label>Season</mat-label>
+                    <input type="number" min="1" matInput placeholder="Episode number" formControlName="seasonNumber">
+                    <mat-hint *ngIf="(episodeForm.get('seasonNumber').dirty || episodeForm.get('seasonNumber').touched) && episodeForm.get('seasonNumber').invalid">
+                        <p class="text-red-500">Please specify the season number</p>
+                    </mat-hint>
+                </mat-form-field>
                 <mat-label>Episode number</mat-label>
                 <input type="number" min="1" matInput placeholder="Episode number" formControlName="episodeNumber">
                 <mat-hint *ngIf="(episodeForm.get('episodeNumber').dirty || episodeForm.get('episodeNumber').touched) && episodeForm.get('episodeNumber').invalid">
                     <p class="text-red-500">Please specify episode's number</p>
-                </mat-hint>
-            </mat-form-field>
-            <mat-form-field>
-                <mat-label>Season</mat-label>
-                <input type="number" min="1" matInput placeholder="Episode number" formControlName="seasonNumber">
-                <mat-hint *ngIf="(episodeForm.get('seasonNumber').dirty || episodeForm.get('seasonNumber').touched) && episodeForm.get('seasonNumber').invalid">
-                    <p class="text-red-500">Please specify the season number</p>
                 </mat-hint>
             </mat-form-field>
             <mat-form-field appearance="outline">

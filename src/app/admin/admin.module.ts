@@ -8,10 +8,18 @@ import { AdminComponent } from './admin.component';
 import { AddEpisodeComponent } from './add-episode/add-episode.component';
 import { ViewEpisodesComponent } from './view-episodes/view-episodes.component';
 import { AddContestantComponent } from './add-contestant/add-contestant.component';
+import { ContestantsRequestComponent } from './contestants-request/contestants-request.component';
 
 
 @NgModule({
-  declarations: [ViewContestantsComponent, AdminComponent, AddEpisodeComponent, ViewEpisodesComponent, AddContestantComponent],
+  declarations: [
+    ViewContestantsComponent,
+    AdminComponent,
+    AddEpisodeComponent,
+    ViewEpisodesComponent,
+    AddContestantComponent,
+    ContestantsRequestComponent
+  ],
   imports: [
     CommonModule,
     AdminRoutingModule,

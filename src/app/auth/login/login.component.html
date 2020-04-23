@@ -1,0 +1,23 @@
+<section class="page">
+    <section class="wrapper">
+        <div class="form px-4" [formGroup]="loginForm">
+            <h1 class="font-dancing-script text-4xl flex align-items-center justify-content-center">
+                <span>NumberOneGirl</span>&nbsp;
+                <img src="assets/images/tv.png" height="60" width="60" alt="">
+            </h1>
+            <p class="text-red-600 text-center">Admin</p>
+            <mat-form-field>
+                <mat-label>Username</mat-label>
+                <input type="text" matInput formControlName="username" placeholder="Username" />
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Password</mat-label>
+                <input type="password" matInput formControlName="password" placeholder="Password" />
+            </mat-form-field>
+            <div class="py-3">
+                <button (click)="login()" class="px-3 rounded py-2 bg-red-600 text-white">Login</button>
+            </div>
+        </div>
+
+    </section>
+</section>
