@@ -59,8 +59,8 @@ export class DbService {
   /**
    * Episodes
    */
-  getEpisodes() {
-    return this.episodesCollection.snapshotChanges()
+  getEpisodes(limit = 15) {
+    return this.ref.collection('episodes', ref => ref.orderBy('createdAt', 'desc').limit(limit)).snapshotChanges()
       .pipe(map(actions => actions.map(action => {
         const id = action.payload.doc.id;
         const data = action.payload.doc.data() as EpisodesModel;

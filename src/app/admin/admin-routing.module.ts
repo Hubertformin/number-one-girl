@@ -5,6 +5,7 @@ import { AdminComponent } from './admin.component';
 import { AddContestantComponent } from './add-contestant/add-contestant.component';
 import { ViewEpisodesComponent } from './view-episodes/view-episodes.component';
 import { AddEpisodeComponent } from './add-episode/add-episode.component';
+import { ContestantsRequestComponent } from './contestants-request/contestants-request.component';
 
 
 const routes: Routes = [
@@ -13,10 +14,23 @@ const routes: Routes = [
     component: AdminComponent,
     children: [
       {path: '', redirectTo: 'view-contestants', pathMatch: 'full'},
-      {path: 'view-contestants', component: ViewContestantsComponent},
-      {path: 'add-contestant', component: AddContestantComponent},
-      {path: 'view-episodes', component: ViewEpisodesComponent},
-      {path: 'add-episode', component: AddEpisodeComponent},
+      {
+        path: 'contestants',
+        children: [
+          {path: '', redirectTo: 'view', pathMatch: 'full'},
+          {path: 'add', component: AddContestantComponent},
+          {path: 'view', component: ViewContestantsComponent},
+          {path: 'request', component: ContestantsRequestComponent}
+        ]
+      },
+      {
+        path: 'episodes',
+        children: [
+          {path: '', redirectTo: 'view', pathMatch: 'full'},
+          {path: 'add', component: AddEpisodeComponent},
+          {path: 'view', component: ViewEpisodesComponent}
+        ]
+      }
     ]
   }
 ];

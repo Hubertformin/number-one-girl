@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { VoteContestantComponent } from '../vote-contestant/vote-contestant.component';
+import { SeoService } from '../../providers/seo.service';
 
 @Component({
   selector: 'app-contestants',
@@ -9,7 +10,7 @@ import { VoteContestantComponent } from '../vote-contestant/vote-contestant.comp
 })
 export class ContestantsComponent implements OnInit {
 
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog, public seo: SeoService) {}
 
   openDialog(): void {
     const dialogRef = this.dialog.open(VoteContestantComponent, {
@@ -23,5 +24,6 @@ export class ContestantsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.seo.setSeoTags('Contestants', 'Number One girl contestants');
   }
 }

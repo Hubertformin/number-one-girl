@@ -1,9 +1,10 @@
 export interface ContestantModel {
   id?: string;
+  photoUrl?: string;
   name?: string;
   email?: string;
   voteCount?: number;
-  dateOfBirth?: Date;
+  age?: number;
   gender?: string;
   phoneNumber?: string;
   paymentMethod?: string;

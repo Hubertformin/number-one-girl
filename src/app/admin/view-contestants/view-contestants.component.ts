@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { SeoService } from '../../providers/seo.service';
+import { DbService } from '../../providers/db.service';
+import { ContestantModel } from '../../models/contestant.model';
 
 @Component({
   selector: 'app-view-contestants',
@@ -6,10 +9,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./view-contestants.component.scss']
 })
 export class ViewContestantsComponent implements OnInit {
+  contestants: ContestantModel[];
 
-  constructor() { }
+  constructor(private seo: SeoService, private db: DbService) { }
 
   ngOnInit(): void {
+    this.db.getContestants()
+      .subscribe(contestants => {
+        this.contestants = contestants;
+      });
   }
 
 }

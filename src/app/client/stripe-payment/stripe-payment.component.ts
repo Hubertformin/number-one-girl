@@ -19,7 +19,7 @@ export class StripePaymentComponent implements OnInit {
   cardErrors;
   clientSecret;
   loading = false;
-  transactionFinished: boolean; 
+  transactionFinished: boolean;
 
   constructor(private stripeBackend: PaymentService) { }
 

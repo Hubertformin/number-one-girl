@@ -4,24 +4,29 @@
     </section>
 <!--    -->
     <div class="body pt-8">
-        <div class="lists px-4">
-            <div class="list-item border-b py-2 md:flex">
-                <div class="icon md:px-6">
-                    <img src="../../../assets/images/icons/icons8_video_96px_1.png" alt="">
-                </div>
-                <div class="">
-                    <h1 class="font-bold text-2xl">Season 4 - Episode 1: Clara meets blake</h1>
-                    <p class="line-clamp-2 text-sm">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                        A ad aperiam commodi doloremque iste maiores, odit perspiciatis ratione rem similique ut vel?
-                        Laboriosam mollitia nobis numquam omnis, praesentium quibusdam sed!
-                    </p>
-                    <div class="footer py-3">
-                        <button mat-button>View</button>
-                        <button mat-button>Delete</button>
+        <section *ngIf="episodes">
+            <div class="lists px-4">
+                <div *ngFor="let ep of episodes;" class="list-item border-b py-2 md:flex">
+                    <div class="icon md:px-6">
+                        <img [src]="ep.thumbnail ? (ep.thumbnail.medium ? ep.thumbnail.medium : STATIC_THUMB) : STATIC_THUMB" alt="">
+                    </div>
+                    <div class="">
+                        <h1 class="font-bold text-2xl">Season {{ep.seasonNumber}} - Episode {{ep.episodeNumber}}: {{ep.title}}</h1>
+                        <p class="line-clamp-2 text-sm">{{ep.description}}</p>
+                        <div class="footer py-3">
+                            <button [routerLink]="'/watch/' + ep.id" mat-button>View</button>
+                            <button mat-button>Delete</button>
+                        </div>
                     </div>
                 </div>
             </div>
+            <!--if no results-->
+            <div *ngIf="episodes.length === 0" class="h-64 flex justify-content-center align-items-center">
+                <h4>No episodes.</h4>
+            </div>
+        </section>
+        <div *ngIf="!episodes" class="h-64 flex justify-content-center align-items-center">
+            <mat-progress-spinner></mat-progress-spinner>
         </div>
     </div>
 </section>

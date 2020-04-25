@@ -1,11 +1,34 @@
-<section class="h-32 px-8 pt-6 bg-red-700">
+<section class="h-24 px-8 pt-6 bg-red-700">
     <h1>View contestants</h1>
 </section>
 <!---->
-<section class="body">
-    <div class="contestant-data-list">
-        <div class="list-item">
-
+<section class="body py-6 px-4 md:px-6">
+    <div *ngIf="contestants" class="contestant-data-list">
+        <div *ngFor="let contestant of contestants;" class="list-item px-6 py-4 border-b mb-3">
+            <div class="image-container">
+                <img [src]="contestant.photoUrl ? contestant.photoUrl : 'assets/images/female-silhoute-01.png'" class="fill-img" [alt]="contestant.name">
+            </div>
+            <div class="pt-3 px-4 md:px-6">
+                <div>
+                    <h1><strong>Name:</strong> {{contestant.name}}</h1>
+                    <h2><strong>Age:</strong>{{contestant.age}}</h2>
+                    <p><strong>Phone:</strong> {{contestant.phoneNumber}}</p>
+                    <p><strong>Votes:</strong> {{contestant.voteCount}}</p>
+                </div>
+                <div class="py-2">
+                    <button mat-stroked-button>Edit</button>&nbsp;
+                    <button mat-stroked-button>Delete</button>
+                </div>
+            </div>
         </div>
+        <!--if no results-->
+        <div *ngIf="contestants.length === 0" class="h-64 flex flex-column justify-content-center align-items-center">
+            <h4>No contestants added</h4>
+            <button routerLink="/admin/contestants/add" mat-raised-button color="primary">Add contestant</button>
+        </div>
+    </div>
+<!--    loader-->
+    <div *ngIf="!contestants" class="h-64 flex justify-content-center align-items-center">
+        <mat-progress-spinner></mat-progress-spinner>
     </div>
 </section>

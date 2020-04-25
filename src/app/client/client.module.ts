@@ -11,22 +11,26 @@ import { ContestantsComponent } from './contestants/contestants.component';
 import { WatchEpisodeComponent } from './watch-episode/watch-episode.component';
 import { VoteContestantComponent } from './vote-contestant/vote-contestant.component';
 import { StripePaymentComponent } from './stripe-payment/stripe-payment.component';
+import { MatVideoModule } from 'mat-video';
 
 
 
 @NgModule({
-  declarations: [HomeComponent,
-    EpisodesComponent, AboutComponent,
+  declarations: [
+    HomeComponent,
+    EpisodesComponent,
+    AboutComponent,
     RegisterComponent,
     ContestantsComponent,
     WatchEpisodeComponent,
     VoteContestantComponent,
-    StripePaymentComponent],
+    StripePaymentComponent
+  ],
   imports: [
     CommonModule,
     ClientRoutingModule,
     SharedModule,
-    ReactiveFormsModule,
+    MatVideoModule
   ]
 })
 export class ClientModule { }

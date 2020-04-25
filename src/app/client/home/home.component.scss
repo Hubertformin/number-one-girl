@@ -16,26 +16,7 @@
   position: relative;
   color: white;
   @include md-screens {
-    height: 80vh;
-  }
-}
-
-/*
-*/
-.list {
-  width: 100%;
-  text-align: center;
-  .list-item {
-    width: 100%;
-  }
-  @include sm-screens {
-    white-space: nowrap;
-    overflow-x: auto;
-    .list-item {
-      width: 296px;
-      padding: 0 10px;
-      display: inline-block;
-    }
+    height: 90vh;
   }
 }
 
@@ -59,6 +40,18 @@
     height: 175px;
     @include md-screens {
       height: 175px;
+    }
+  }
+}
+
+#logos {
+  min-height: 400px;
+  img {
+    height: auto;
+    width: 100%;
+    @include md-screens {
+      height: 215px;
+      width: auto;
     }
   }
 }

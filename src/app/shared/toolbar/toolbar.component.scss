@@ -1,5 +1,10 @@
 @import "../../styles/responsive";
 #toolbar {
+  background-color: #000000;
+  transition: background-color 0.4s ease-out;
+  &.no-bg {
+    background-color: transparent;
+  }
   .toolbar-container {
     background: inherit;
     height: 100%;
@@ -59,6 +64,12 @@
           }
           &.nav-brand {
             font-size: 26px;
+            display: inline-flex;
+            align-items: center;
+            img {
+              height: 30px;
+              width: 30px;
+            }
           }
           @include md-screens {
             padding: 0 17px;

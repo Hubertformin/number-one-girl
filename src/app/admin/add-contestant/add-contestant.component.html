@@ -1,1 +1,51 @@
-<p>add-contestant works!</p>
+<section class="h-24 px-8 pt-6 bg-red-700">
+    <h1>Add contestants</h1>
+</section>
+<section class="px-4 md:px-6 py-6 md:flex">
+    <div class="profile">
+        <div (click)="file.click()"
+             class="image-box bg-gray-500 rounded cursor-pointer border">
+            <input #file type="file" (change)="onImageSelected($event)" style="display: none;" accept="image/*" />
+            <div *ngIf="!imageUrl" class="image-placeholder bg-gray-700 h-full flex justify-content-center align-items-center flex-column">
+                <p class="m-0 text-6xl">+</p>
+                <small>Click to import photo</small>
+            </div>
+            <img *ngIf="imageUrl" [src]="imageUrl" alt="">
+            <div *ngIf="uploadPercent" class="progress">
+                <mat-progress-bar [value]="uploadPercent | async"></mat-progress-bar>
+            </div>
+        </div>
+<!--        show preview-->
+        <p *ngIf="imageUrl" class="px-4"><small>Click on the image to change</small></p>
+    </div>
+    <div class="form px-4 md:px-8" [formGroup]="form">
+        <mat-form-field>
+            <input type="text" placeholder="Name" formControlName="name" matInput />
+            <mat-hint *ngIf="(form.get('name').dirty || form.get('name').touched) && form.get('name').invalid">
+                <p class="text-red-600">A name is required</p>
+            </mat-hint>
+        </mat-form-field>
+        <mat-form-field>
+            <input type="number" placeholder="Age" formControlName="age" matInput />
+            <mat-hint *ngIf="(form.get('age').dirty || form.get('age').touched) && form.get('age').invalid">
+                <p class="text-red-600">An age is required</p>
+            </mat-hint>
+        </mat-form-field>
+        <mat-form-field>
+            <input type="tel" placeholder="Phone number" formControlName="phoneNumber" matInput />
+            <mat-hint *ngIf="(form.get('phoneNumber').dirty || form.get('phoneNumber').touched) && form.get('phoneNumber').invalid">
+                <p class="text-red-600">A phone number is required</p>
+            </mat-hint>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Email</mat-label>
+            <input type="email" placeholder="Email(optional)" formControlName="email" matInput />
+            <mat-hint *ngIf="(form.get('email').dirty || form.get('email').touched) && form.get('email').invalid">
+                <p class="text-red-600">Email not valid</p>
+            </mat-hint>
+        </mat-form-field>
+        <div class="py-2">
+            <button (click)="submit()" mat-raised-button color="primary">Add</button>
+        </div>
+    </div>
+</section>

@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { resolve } from 'dns';
 import { AngularFireFunctions } from '@angular/fire/functions';
 
 @Injectable({
@@ -10,7 +9,7 @@ export class PaymentService {
 
   private stripe;
 
-  constructor(private functions: AngularFireFunctions) { 
+  constructor(private functions: AngularFireFunctions) {
     this.stripe = Stripe(environment.stripePublishableKey);
   }
 

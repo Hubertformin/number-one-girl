@@ -1,0 +1,28 @@
+@import "../../styles/responsive";
+.profile {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  @include md-screens {
+    width: 200px;
+    height: 200px;
+  }
+}
+.image-box {
+  width: 100%;
+  position: relative;
+  height: 100%;
+  .progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+}
+.form {
+  height: 100%;
+  width: 100%;
+  @include md-screens {
+    width: calc(100% - 200px);
+  }
+}

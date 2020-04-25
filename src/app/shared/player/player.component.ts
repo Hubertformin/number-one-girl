@@ -30,7 +30,7 @@ export class PlayerComponent implements OnInit, OnChanges {
     //   type: 'video',
     //   src: this.video.url
     // }];
-    // console.log(this.video.url);
+    console.log(this.video.url);
   }
 
   ngOnInit() {
@@ -41,7 +41,7 @@ export class PlayerComponent implements OnInit, OnChanges {
   }
 
   played() {
-    this.dashjsDriver2.load(this.video.url);
+    this.dashjsDriver1.load(this.video.url);
   }
 
 }

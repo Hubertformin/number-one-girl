@@ -1,5 +1,5 @@
-<app-toolbar></app-toolbar>
-<main class="pb-8 md:pb-16">
+<app-toolbar [noBg]="true"></app-toolbar>
+<section class="pb-8 md:pb-16">
     <section class="overlay">
         <div class="content pb-8 flex flex-column justify-content-end px-4 md:px-8">
             <h1 class="font-dancing-script text-4xl md:text-6xl flex align-items-center">
@@ -7,8 +7,8 @@
                 <img src="assets/images/tv.png" height="60" width="60" alt="">
             </h1>
             <h2 class="text-sm md:text-lg">
-                <span>First original 100% cameroonian reality TV show</span><br>
-                <span> We are aimed at bringing talents in young girls, increasing their ability to collaborate with each other.</span>
+                <span>First 100% Cameroonian reality TV show</span><br>
+                <span> We are aimed at bringing out talents in young girls and increasing their ability to collaborate with each other.</span>
             </h2>
             <div class="py-3">
                 <button routerLink="/episodes" class="bg-red-700 hover:bg-red-700 text-white font-bold py-2 px-5 rounded">
@@ -88,15 +88,15 @@
             </div>
             <div class="text text-lg md:text-xl md:px-8">
                 <p class="m-0">
-                    Number One Girl is the first cameroonian Reality TV show, aimed at bringing talents in young girls, increasing
+                    Number One Girl is the first cameroonian Reality TV show, aimed at bringing out talents in young girls and increasing
                     their ability to collaborate with each together.
                 </p>
                 <p class="m-0">
-                    We offer a unique experience to the candidates and give a serious head start for the winner in any branch of the
+                    We offer a unique experience to the candidates and give a serious head start to the winner in any branch of the
                     entertainment industry.
                 </p>
                 <p class="m-0">
-                    Number one girl is focused on empowering women. By encouraging them out of their comfort zones and building their confidence.
+                    Number one girl is focused on empowering women by encouraging them come out of their comfort zones and boost their confidence.
                 </p>
                 <p class="m-0"></p>
             </div>
@@ -168,6 +168,13 @@
             </div>
         </div>
     </div>
+    <!--logo display -->
+    <div id="logos" class="row md:flex justify-content-center align-items-center py-8 px-4">
+        <div class="pb-4 md:px-4 md:pb-0"><img src="../../../assets/images/logo-1.jpg" alt=""></div>
+        <div class="pb-4 md:px-4 md:pb-0"><img src="../../../assets/images/logo-4.jpg" alt=""></div>
+        <div class="pb-4 md:px-4 md:pb-0"><img src="../../../assets/images/logo-3.jpg" alt=""></div>
+        <div class="pb-4 md:px-4 md:pb-0"><img src="../../../assets/images/logo-2.jpg" alt=""></div>
+    </div>
     <!--contact us-->
     <div id="contact">
         <div class="content py-6 md:py-16 px-4 md:px-20">
@@ -197,5 +204,5 @@
             </div>
         </div>
     </div>
-</main>
+</section>
 <app-footer></app-footer>
