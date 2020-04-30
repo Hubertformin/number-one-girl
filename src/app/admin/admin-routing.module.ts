@@ -6,6 +6,7 @@ import { AddContestantComponent } from './add-contestant/add-contestant.componen
 import { ViewEpisodesComponent } from './view-episodes/view-episodes.component';
 import { AddEpisodeComponent } from './add-episode/add-episode.component';
 import { ContestantsRequestComponent } from './contestants-request/contestants-request.component';
+import { SettingsComponent } from './settings/settings.component';
 
 
 const routes: Routes = [
@@ -13,7 +14,7 @@ const routes: Routes = [
     path: '',
     component: AdminComponent,
     children: [
-      {path: '', redirectTo: 'view-contestants', pathMatch: 'full'},
+      {path: '', redirectTo: 'contestants/view', pathMatch: 'full'},
       {
         path: 'contestants',
         children: [
@@ -30,6 +31,10 @@ const routes: Routes = [
           {path: 'add', component: AddEpisodeComponent},
           {path: 'view', component: ViewEpisodesComponent}
         ]
+      },
+      {
+        path: 'settings',
+        component: SettingsComponent
       }
     ]
   }

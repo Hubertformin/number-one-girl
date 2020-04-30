@@ -6,9 +6,9 @@
     <section class="body">
         <section class="white-fill pt-8 pb-24">
             <div class="content">
-                <div class="card row shadow border rounded px-6 pt-8 pb-6">
-                    <div class="col-sm-5">
-                        <h1 class="text-3xl mb-4 font-bold text-pink-500">Become a Contestants?</h1>
+                <div class="card row shadow rounded px-6 pt-8 pb-6">
+                    <div class="col-sm-6 text-center">
+                        <h1 class="text-3xl mb-4 font-bold text-red">Become a Contestants?</h1>
                         <ol class="ml-3 list">
                             <li>
                                 <p>Fill the form with your correct details and submit</p>
@@ -21,7 +21,7 @@
                             </li>
                         </ol>
                     </div>
-                    <div class="col-sm-7 md:border-l">
+                    <div class="col-sm-6 md:border-l">
                         <form class="px-6" [formGroup]="registerForm">
                             <mat-form-field>
                                 <mat-label>Name</mat-label>
@@ -81,6 +81,7 @@
                                 <p *ngIf="payment_control.invalid && (payment_control.touched || payment_control.dirty)">
                                     <small class="text-red-500">Please select a payment method</small>
                                 </p>
+                                <app-stripe-payment></app-stripe-payment>
                             </div>
                             <div class="actions pt-4 text-right">
                                 <button (click)="submitForm()" mat-raised-button color="primary">Submit</button>

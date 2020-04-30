@@ -15,7 +15,7 @@
                         <p class="line-clamp-2 text-sm">{{ep.description}}</p>
                         <div class="footer py-3">
                             <button [routerLink]="'/watch/' + ep.id" mat-button>View</button>
-                            <button mat-button>Delete</button>
+                            <button (click)="delete(ep)" mat-button>Delete</button>
                         </div>
                     </div>
                 </div>

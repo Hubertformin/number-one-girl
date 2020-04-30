@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { SeoService } from '../../providers/seo.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { DbService } from '../../providers/db.service';
+import { IsLoadingService } from '@service-work/is-loading';
+import { ToastService } from '../../providers/toast.service';
 
 declare type PAYMENT_OPTIONS = 'MTN Mobile Money' | 'Orange Money';
 
@@ -11,7 +14,10 @@ declare type PAYMENT_OPTIONS = 'MTN Mobile Money' | 'Orange Money';
 })
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
-  constructor(private seo: SeoService, private fb: FormBuilder) { }
+  constructor(private seo: SeoService, private fb: FormBuilder,
+              private toast: ToastService,
+              private loading: IsLoadingService,
+              private db: DbService) { }
 
   ngOnInit(): void {
     this.seo.setSeoTags('Register as candidate', 'Register as a number one girl candidate', 'register, number on girl cameroon');
@@ -50,10 +56,23 @@ export class RegisterComponent implements OnInit {
   * When form is submitted
   * */
   submitForm() {
-    console.log(this.registerForm.value);
+    // console.log(this.registerForm.value);
     if (this.registerForm.invalid) {
       this.registerForm.markAllAsTouched();
       return;
     }
+    // send request
+    this.db.addContestantRequest(this.registerForm.value)
+      .then(() => {
+        this.registerForm.reset();
+        this.toast.notify('Request sent');
+      })
+      .catch(err => {
+        console.error(err);
+        this.toast.notify('Failed to send request, please try again later');
+      })
+      .finally(() => {
+        this.loading.remove();
+      })
   }
 }

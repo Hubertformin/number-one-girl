@@ -3,17 +3,18 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/fire
 import { ContestantModel } from '../models/contestant.model';
 import { map } from 'rxjs/operators';
 import { EpisodesModel } from '../models/episodes.model';
+import { AngularFireStorage } from '@angular/fire/storage';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DbService {
   contestantsCollection: AngularFirestoreCollection<ContestantModel>;
-  contestRequestCollection: AngularFirestoreCollection<ContestantModel>;
   episodesCollection: AngularFirestoreCollection<EpisodesModel>;
-  constructor(private afs: AngularFirestore) {
+  private contestantsRequestCollection: AngularFirestoreCollection<ContestantModel>;
+  constructor(private afs: AngularFirestore, private afStorage: AngularFireStorage) {
     this.contestantsCollection = afs.collection<ContestantModel>('contestants');
-    this.contestRequestCollection = afs.collection<ContestantModel>('contestRequest');
+    this.contestantsRequestCollection = afs.collection<ContestantModel>('contestantsRequest');
     this.episodesCollection = afs.collection<EpisodesModel>('episodes');
   }
   /* get reference*/
@@ -46,15 +47,25 @@ export class DbService {
   * */
   /*=Add contestants=*/
   addContestantRequest(contestant: ContestantModel) {
-    return this.contestRequestCollection.add(contestant);
+    return this.contestantsRequestCollection.add(contestant);
+  }
+  getContestantRequest(limit = 20) {
+    return this.ref
+      .collection<ContestantModel>('contestantsRequest', ref => ref.limit(limit))
+      .snapshotChanges()
+      .pipe(map(actions => actions.map(action => {
+        const id = action.payload.doc.id;
+        const data = action.payload.doc.data() as ContestantModel;
+        return {id, ...data};
+      })))
   }
   /*==update contestants=*/
   updateContestantRequest(contestant: ContestantModel) {
-    return this.contestantsCollection.doc(contestant.id).update(contestant);
+    return this.contestantsRequestCollection.doc(contestant.id).update(contestant);
   }
   /*= Delete contestants ==*/
   deleteContestantRequest(id: string) {
-    return this.contestRequestCollection.doc(id).delete();
+    return this.contestantsRequestCollection.doc(id).delete();
   }
   /**
    * Episodes
@@ -84,7 +95,10 @@ export class DbService {
   editEpisode(episode: EpisodesModel) {
     return this.episodesCollection.doc(episode.id).update(episode)
   }
-  deleteEpisode(id: string) {
-    return this.episodesCollection.doc(id).delete();
+  deleteEpisode(episode: EpisodesModel) {
+    return this.episodesCollection.doc(episode.id).delete()
+      .then(() => {
+        this.afStorage.storage.refFromURL(episode.url).delete();
+      })
   }
 }

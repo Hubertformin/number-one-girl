@@ -1,0 +1,20 @@
+@import "../../styles/responsive";
+
+.contestant-data-list {
+  .list-item {
+    @include md-screens {
+      display: flex;
+    }
+    .image-container {
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+      background-color: #e53e3e;
+      border-radius: 10px;
+      @include md-screens {
+        height: 150px;
+        width: 150px;
+      }
+    }
+  }
+}

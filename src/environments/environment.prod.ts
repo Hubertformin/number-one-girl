@@ -11,5 +11,6 @@ export const environment = {
     messagingSenderId: '731935211028',
     appId: '1:731935211028:web:4439abdb0eb386ee013101',
     measurementId: 'G-LYNLKYNQ2Y'
-  }
+  },
+  stripePublishableKey: 'pk_live_6WWBVlQbDk2iuJyY3LzDklBP',
 };
