@@ -23,7 +23,8 @@ const VOTE_PRICE = 100;
 // The amount paid by contestants in XCFA
 const CONTESTANT_PRICE = 5000;
 
-const STRIPE_SECRET_KEY = 'sk_live_vmIRAd5CWZ6n7RS11ND3fFsc';
+//Uncomment the following line in production
+// const STRIPE_SECRET_KEY = 'sk_live_vmIRAd5CWZ6n7RS11ND3fFsc';
 const STRIPE_TEST_SECRET_KEY = 'sk_test_aS1UDIuM6Vla6laqLlBJ6u8y';
 //const Stripe = require('stripe');
 const stripe = new Stripe(STRIPE_TEST_SECRET_KEY, {
@@ -212,7 +213,7 @@ exports.createPaymentIntent = functions.https.onCall((data, context) => {
 exports.updatePaymentIntent = functions.https.onCall((data, context) => {
   let amount = calculatePrice(data.item);
 
-  const paymentIntent = stripe.paymentIntents.update(data.id, {amount: amount}).then((paymentIntent) => {
+  stripe.paymentIntents.update(data.id, {amount: amount}).then((paymentIntent) => {
     return admin.firestore().collection('payments').doc(paymentIntent.id).set({...paymentIntent, type: data.item}).then(() => {
       return paymentIntent.client_secret;
     });
