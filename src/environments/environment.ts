@@ -17,5 +17,5 @@ export const environment = {
     appId: '1:731935211028:web:4439abdb0eb386ee013101',
     measurementId: 'G-LYNLKYNQ2Y'
   },
-  stripePublishableKey: 'pk_live_6WWBVlQbDk2iuJyY3LzDklBP',
+  stripePublishableKey: 'pk_test_nweoKA23xTM9rYZPjfbV4ZvY',
 };

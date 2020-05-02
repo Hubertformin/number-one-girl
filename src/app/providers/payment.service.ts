@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { AngularFireFunctions } from '@angular/fire/functions';
+import { of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -27,5 +28,11 @@ export class PaymentService {
       const updateFunction = this.functions.httpsCallable('updatePaymentIntent');
       return updateFunction({item: item, id: intent_id}).toPromise();
     }
+  }
+
+  async pay(data): Promise<any>{
+    //we will call our pay cloud function here
+    const createFunction = this.functions.httpsCallable('pay');
+      return createFunction({data: data}).toPromise();
   }
 }

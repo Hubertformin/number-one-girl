@@ -5,6 +5,6 @@
 
       <div id="card-errors" role="alert" *ngIf="cardErrors">{{ error }}</div>
     </div>
-    <button type="submit" mat-raised-button color="primary">Pay</button>
+    <button id="pay-button", type="submit" mat-raised-button color="primary" [disabled] = 'disableButton'>Pay</button>
   
 </form>
