@@ -1,4 +1,5 @@
 import * as functions from 'firebase-functions';
+import Stripe from 'stripe';
 
 const mkdirp = require('mkdirp-promise');
 const admin = require('firebase-admin');
@@ -23,7 +24,12 @@ const VOTE_PRICE = 100;
 const CONTESTANT_PRICE = 5000;
 
 const STRIPE_SECRET_KEY = 'sk_live_vmIRAd5CWZ6n7RS11ND3fFsc';
-const stripe = require('stripe')(STRIPE_SECRET_KEY);
+const STRIPE_TEST_SECRET_KEY = 'sk_test_aS1UDIuM6Vla6laqLlBJ6u8y';
+//const Stripe = require('stripe');
+const stripe = new Stripe(STRIPE_TEST_SECRET_KEY, {
+  typescript: true,
+  apiVersion: "2020-03-02"
+});
 
 
 admin.initializeApp({
@@ -152,38 +158,108 @@ exports.onFileUploaded = functions.storage.object().onFinalize((object: any) => 
   })
 });
 
+const calculatePrice = function(item: string): number{
+  if (item == 'vote')
+    return VOTE_PRICE;
+  else (item == 'contestant')
+    return CONTESTANT_PRICE;
+}
+
+const generateResponse = (intent: Stripe.PaymentIntent): 
+| { clientSecret: string | null, requiresAction: boolean }
+| { clientSecret: string | null }
+| { error: string } => {
+  // Generate response based on intent's status
+  switch (intent.status){
+    case "requires_action":
+      return {
+        clientSecret: intent.client_secret,
+        requiresAction: true
+      };
+    
+    case "requires_payment_method":
+      return {
+        error: "Your card was denied, please provide a new payment method"
+      };
+
+    case "succeeded":
+      // Payment is complete authentication is not required 
+      // To cancel the payment, you will need to issue a Refund
+      console.log('Payment Recieved');
+      return { clientSecret: intent.client_secret}
+
+    default: 
+      return {error: "Intent status should be either 'requires_action', 'requires_payment_method' or 'succeeded'"};
+  }
+}
+
 exports.createPaymentIntent = functions.https.onCall((data, context) => {
-  let amount;
+  let amount = calculatePrice(data.item);
 
-  if (data.item == 'vote')
-    amount = VOTE_PRICE;
-  else (data.item == 'contestant')
-    amount = CONTESTANT_PRICE;
-
-  const paymentIntent = stripe.paymentIntents.create({
+  stripe.paymentIntents.create({
     amount: amount,
     currency: 'xaf',
     // Verify your integration in this guide by including this parameter
     metadata: {integration_check: 'accept_a_payment'},
-  });
-
-  return admin.firestore().collection('payments').doc(paymentIntent.id).set({...paymentIntent, type: data.item}).then(()=>{
-    return paymentIntent.client_secret;
+  }).then((paymentIntent) => {
+      return admin.firestore().collection('payments').doc(paymentIntent.id).set({...paymentIntent, type: data.item}).then(()=>{
+        return paymentIntent.client_secret;
+    });
   });
 
 });
 
 exports.updatePaymentIntent = functions.https.onCall((data, context) => {
-  let amount;
+  let amount = calculatePrice(data.item);
 
-  if(data.item == 'vote')
-    amount = VOTE_PRICE;
-  else(data.item == 'contestant')
-    amount = CONTESTANT_PRICE;
-
-  const paymentIntent = stripe.paymentIntents.update(data.id, {amount: amount});
-
-  return admin.firestore().collection('payments').doc(paymentIntent.id).set({...paymentIntent, type: data.item}).then(() => {
-    return paymentIntent.client_secret;
+  const paymentIntent = stripe.paymentIntents.update(data.id, {amount: amount}).then((paymentIntent) => {
+    return admin.firestore().collection('payments').doc(paymentIntent.id).set({...paymentIntent, type: data.item}).then(() => {
+      return paymentIntent.client_secret;
+    });
   });
+});
+
+exports.pay = functions.https.onCall(async (data, context) => {
+  const {
+    paymentMethodId,
+    paymentIntentId,
+    item,
+    currency,
+    useStripeSdk
+  }: {
+    paymentMethodId: string,
+    paymentIntentId: string,
+    item: string,
+    currency: string,
+    useStripeSdk: boolean
+  } = data;
+
+  const amount : number = calculatePrice(item);
+
+  try{
+    let intent: Stripe.PaymentIntent;
+    if (paymentMethodId){
+      const params: Stripe.PaymentIntentCreateParams = {
+        amount: amount,
+        confirm: true,
+        confirmation_method: "manual",
+        currency: currency,
+        payment_method: paymentMethodId,
+        use_stripe_sdk: useStripeSdk
+      };
+
+      intent = await stripe.paymentIntents.create(params);
+      return generateResponse(intent);
+      //After create if the paymentIntent's status is succeeded, fulfill the order
+    } else if (paymentIntentId) {
+      // Confirm the paymentIntent to finalize payment after handling a required action
+      // on the client
+      intent = await stripe.paymentIntents.confirm(paymentIntentId);
+      return generateResponse(intent);
+    } else {
+      throw new functions.https.HttpsError("invalid-argument", "You must submit either paymentIntentId or paymentMethodId" );
+    }
+  } catch (e) {
+    throw e;
+  }
 });
