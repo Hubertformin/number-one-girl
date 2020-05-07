@@ -165,7 +165,7 @@ export class StripePaymentComponent implements OnInit, AfterViewInit, OnDestroy 
 
   orderComplete(clientSecret) {
     this.stripe.retrievePaymentIntent(clientSecret).then((result) => {
-      this.onTransactionComplete.emit(result);
+      this.onTransactionComplete.emit({error: false, data: result});
     });
     // this.disableButton = false;
   }
@@ -173,7 +173,7 @@ export class StripePaymentComponent implements OnInit, AfterViewInit, OnDestroy 
   outputError(data) {
     this.onTransactionComplete.emit({
       error: true,
-      message: data.error
+      data: data.error
     });
     //this.disableButton = false;
   }

@@ -1,5 +1,7 @@
 import * as functions from 'firebase-functions';
 import Stripe from 'stripe';
+import * as express from 'express';
+import * as bodyParser from "body-parser";
 
 const mkdirp = require('mkdirp-promise');
 const admin = require('firebase-admin');
@@ -263,4 +265,24 @@ exports.pay = functions.https.onCall(async (data, context) => {
   } catch (e) {
     throw e;
   }
+});
+
+const app = express();
+app.use(bodyParser.json());
+
+app.post("/webhook", async (req, res) => {
+  let data, eventType;
+
+  data = req.body.data;
+  eventType = req.body.type;
+
+  if (eventType === "payment_intent.succeeded") {
+    // Funds have been captured
+    // Fulfill any orders, e-mail receipts, etc
+    // To cancel the payment after capture you will need to issue a Refund (https://stripe.com/docs/api/refunds)
+    console.log("💰 Payment captured!");
+  } else if (eventType === "payment_intent.payment_failed") {
+    console.log("❌ Payment failed.");
+  }
+  res.sendStatus(200);
 });
