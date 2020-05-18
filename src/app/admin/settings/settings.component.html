@@ -3,9 +3,63 @@
         <h1>settings</h1>
     </section>
     <mat-tab-group>
-        <mat-tab label="Home page"></mat-tab>
-        <mat-tab label="Episodes page"></mat-tab>
-        <mat-tab label="Contestant page"></mat-tab>
-        <mat-tab label="Register page"></mat-tab>
+        <mat-tab label="Home page">
+            <div class="background-image">
+                <img [src]="displayedImage" alt="">
+                <div class="action">
+                    <input #file type="file" style="display: none;" (change)="onImageSelect($event)" />
+                    <button [disabled]="isUploading" (click)="file.click()" mat-button>
+                        {{isUploading ? 'Uploading...' : 'Change cover'}}
+                    </button>
+                </div>
+                <div class="progress">
+                    <mat-progress-bar *ngIf="isUploading" [value]="uploadPercent | async"></mat-progress-bar>
+                </div>
+            </div>
+            <section class="pt-4 px-4 md:px-8">
+                <div class="py-3 md:pb-8">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Banner text</mat-label>
+                        <textarea [(ngModel)]="settings.pageSettings.home.introText" placeholder="Banner text" rows="4" matInput></textarea>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Contestant section</mat-label>
+                        <textarea [(ngModel)]="settings.pageSettings.home.contestantHeader" placeholder="Header text" rows="4" matInput></textarea>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>About text</mat-label>
+                        <textarea [(ngModel)]="settings.pageSettings.home.about" placeholder="Banner text" rows="7" matInput></textarea>
+                    </mat-form-field>
+                </div>
+            </section>
+        </mat-tab>
+<!--        <mat-tab label="Episodes page"></mat-tab>-->
+        <mat-tab label="Contestant page">
+            <section class="px-4 md:px-8 pt-4 md:pt-">
+                <mat-form-field appearance="outline">
+                    <mat-label>Banner text</mat-label>
+                    <textarea [(ngModel)]="settings.pageSettings.contestants.description" placeholder="Banner text" rows="4" matInput></textarea>
+                </mat-form-field>
+            </section>
+        </mat-tab>
+        <mat-tab label="Register page">
+            <section class="px-4 md:px-8 pt-4 md:pt-">
+                <mat-form-field appearance="outline">
+                    <mat-label>Title</mat-label>
+                    <input type="text" [(ngModel)]="settings.pageSettings.register.title" placeholder="Title" matInput>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Heading</mat-label>
+                    <input type="text" [(ngModel)]="settings.pageSettings.register.heading" placeholder="heading.." matInput>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Description</mat-label>
+                    <textarea [(ngModel)]="settings.pageSettings.register.text" placeholder="Description" rows="7" matInput></textarea>
+                </mat-form-field>
+            </section>
+        </mat-tab>
     </mat-tab-group>
+    <div class="py-2 px-8">
+        <button (click)="saveSettings()" mat-raised-button color="primary">save</button>
+    </div>
 </section>

@@ -27,7 +27,6 @@ export class StripePaymentComponent implements OnInit, AfterViewInit, OnDestroy 
   @ViewChild('pay-button', {static: false}) payButton: ElementRef;
   @Output() onTransactionStarted = new EventEmitter<any>();
   @Output() onTransactionComplete = new EventEmitter<any>();
-  
 
   stripe;
   card;
@@ -36,15 +35,13 @@ export class StripePaymentComponent implements OnInit, AfterViewInit, OnDestroy 
   transactionFinished: boolean;
   error: any;
   paymentId: any;
-  disableButton: boolean = false;
+  disableButton = false;
 
   constructor(private stripeBackend: PaymentService) { }
 
-  async ngOnInit() {
-
+  ngOnInit() {
     // this.clientSecret = await this.stripeBackend.getPaymentIntent(this.item);
     this.transactionFinished = false;
-
     this.stripe = Stripe(environment.stripePublishableKey);
   }
 
@@ -74,8 +71,7 @@ export class StripePaymentComponent implements OnInit, AfterViewInit, OnDestroy 
       },
     });
     this.card.mount(this.cardElement.nativeElement);
-    //Then create payment method here and pass to client secret
-
+    // Then create payment method here and pass to client secret
     this.card.addEventListener('change', ({error}) =>{
       this.cardErrors = error && error.message;
     });
@@ -85,7 +81,7 @@ export class StripePaymentComponent implements OnInit, AfterViewInit, OnDestroy 
     event.preventDefault();
     this.onTransactionStarted.emit();
     this.disableButton = true;
-    //Disable pay button
+    // Disable pay button
 
      this.stripe.createPaymentMethod({type: 'card', card: this.card}).then((result) => {
        if (result.error){

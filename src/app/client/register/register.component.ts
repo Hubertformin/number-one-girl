@@ -4,6 +4,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DbService } from '../../providers/db.service';
 import { IsLoadingService } from '@service-work/is-loading';
 import { ToastService } from '../../providers/toast.service';
+import { SettingsModel } from '../../models/settings.model';
+import { ActivatedRoute } from '@angular/router';
 
 declare type PAYMENT_OPTIONS = 'MTN Mobile Money' | 'Orange Money';
 
@@ -14,13 +16,21 @@ declare type PAYMENT_OPTIONS = 'MTN Mobile Money' | 'Orange Money';
 })
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
+  settings: SettingsModel;
   constructor(private seo: SeoService, private fb: FormBuilder,
               private toast: ToastService,
               private loading: IsLoadingService,
+              private route: ActivatedRoute,
               private db: DbService) { }
 
   ngOnInit(): void {
     this.seo.setSeoTags('Register as candidate', 'Register as a number one girl candidate', 'register, number on girl cameroon');
+    // get settings data
+    this.route.data
+      .subscribe((data: {settings: SettingsModel}) => {
+        this.settings = data.settings;
+        console.log(data.settings.pageSettings.register);
+      });
     // init form
     this.registerForm = this.fb.group({
       name: ['', Validators.required],

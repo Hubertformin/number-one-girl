@@ -22,7 +22,9 @@
     "serve:ssr": "node dist/number-one-girl/server/main.js",
     "prebuild:ssr": "ngcc",
     "build:ssr": "ng build --prod && ng run number-one-girl:server:production",
-    "prerender": "ng run number-one-girl:prerender"
+    "prerender": "ng run number-one-girl:prerender",
+    "host": "firebase deploy --only hosting",
+    "build:host": "npm run build:prod && firebase deploy --only hosting"
   },
   "pre-commit": [],
   "private": true,

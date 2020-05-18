@@ -11,6 +11,7 @@ import { DragDropDirective } from '../directives/drag-drop.directive';
 import { ObjectUrlPipe } from '../pipes/object-url.pipe';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCommonModule } from '@angular/material/core';
+import { NoInternetComponent } from './no-internet/no-internet.component';
 
 const modules = [
   MatComponentsModule,
@@ -19,7 +20,14 @@ const modules = [
 ];
 
 @NgModule({
-  declarations: [ToolbarComponent, FooterComponent, PageNotFoundComponent, PlayerComponent, DragDropDirective, ObjectUrlPipe],
+  declarations: [
+    ToolbarComponent,
+    FooterComponent,
+    PageNotFoundComponent,
+    PlayerComponent,
+    DragDropDirective, ObjectUrlPipe,
+    NoInternetComponent
+  ],
   imports: [
     CommonModule,
     ...modules,

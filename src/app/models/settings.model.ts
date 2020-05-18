@@ -1,4 +1,6 @@
 interface HomePageSetting {
+  contestantHeader: string;
+  bannerImageUrl: any;
   introText: string;
   about: string;
   contactUs: string;
@@ -9,6 +11,9 @@ interface ContestantsPageSettings {
 }
 
 interface RegisterPageSettings {
+  heading: any;
+  title: any;
+  text: string;
 }
 
 interface PageSettings {
@@ -17,6 +22,6 @@ interface PageSettings {
   register: RegisterPageSettings;
 }
 
-export class SettingsModel {
+export interface SettingsModel {
   pageSettings: PageSettings;
 }

@@ -4,6 +4,8 @@ import { ContestantModel } from '../models/contestant.model';
 import { map } from 'rxjs/operators';
 import { EpisodesModel } from '../models/episodes.model';
 import { AngularFireStorage } from '@angular/fire/storage';
+import { SettingsModel } from '../models/settings.model';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,10 +14,12 @@ export class DbService {
   contestantsCollection: AngularFirestoreCollection<ContestantModel>;
   episodesCollection: AngularFirestoreCollection<EpisodesModel>;
   private contestantsRequestCollection: AngularFirestoreCollection<ContestantModel>;
+  private settingsCollection: AngularFirestoreCollection<SettingsModel>;
   constructor(private afs: AngularFirestore, private afStorage: AngularFireStorage) {
     this.contestantsCollection = afs.collection<ContestantModel>('contestants');
     this.contestantsRequestCollection = afs.collection<ContestantModel>('contestantsRequest');
     this.episodesCollection = afs.collection<EpisodesModel>('episodes');
+    this.settingsCollection = afs.collection<SettingsModel>('settings');
   }
   /* get reference*/
   get ref() {
@@ -100,5 +104,20 @@ export class DbService {
       .then(() => {
         this.afStorage.storage.refFromURL(episode.url).delete();
       })
+  }
+  /*
+  * Settings
+  * */
+  getSettings(): Observable<SettingsModel> {
+    return this.settingsCollection.doc('SETTINGS')
+      .snapshotChanges()
+      .pipe(map(action => {
+        const id = action.payload.id;
+        const data = action.payload.data() as SettingsModel;
+        return {id, ...data};
+      }))
+  }
+  setSettings(settings: SettingsModel) {
+    return this.settingsCollection.doc('SETTINGS').set(settings);
   }
 }

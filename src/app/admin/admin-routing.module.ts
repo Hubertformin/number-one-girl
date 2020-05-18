@@ -7,6 +7,7 @@ import { ViewEpisodesComponent } from './view-episodes/view-episodes.component';
 import { AddEpisodeComponent } from './add-episode/add-episode.component';
 import { ContestantsRequestComponent } from './contestants-request/contestants-request.component';
 import { SettingsComponent } from './settings/settings.component';
+import { SettingsResolverService } from '../resolvers/settings-resolver.service';
 
 
 const routes: Routes = [
@@ -34,7 +35,10 @@ const routes: Routes = [
       },
       {
         path: 'settings',
-        component: SettingsComponent
+        component: SettingsComponent,
+        resolve: {
+          settings: SettingsResolverService
+        }
       }
     ]
   }

@@ -1,25 +1,15 @@
 <app-toolbar></app-toolbar>
 <main>
     <section class="page-header bg-black">
-        <h1 class="text-3xl font-dancing-script">Register as contestants</h1>
+        <h1 class="text-3xl font-dancing-script" [innerText]="settings.pageSettings.register.title"></h1>
     </section>
     <section class="body">
         <section class="white-fill pt-8 pb-24">
             <div class="content">
                 <div class="card row shadow rounded px-6 pt-8 pb-6">
                     <div class="col-sm-6 text-center">
-                        <h1 class="text-3xl mb-4 font-bold text-red">Become a Contestants?</h1>
-                        <ol class="ml-3 list">
-                            <li>
-                                <p>Fill the form with your correct details and submit</p>
-                            </li>
-                            <li>
-                              <p>You will be required to pay a fee of <strong>FCFA 10,000</strong></p>
-                            </li>
-                            <li>
-                              <p>If you're selected you'll be contacted</p>
-                            </li>
-                        </ol>
+                        <h1 class="text-3xl mb-4 font-bold text-red" [innerText]="settings.pageSettings.register.heading"></h1>
+                        <div class="ml-3 list" [innerHTML]="settings.pageSettings.register.text"></div>
                     </div>
                     <div class="col-sm-6 md:border-l">
                         <form class="px-6" [formGroup]="registerForm">
@@ -45,7 +35,7 @@
                                     <p class="text-red-500">Please insert a valid phone number</p>
                                 </mat-hint>
                             </mat-form-field>
-                            <mat-form-field>
+                            <!--<mat-form-field>
                                 <mat-label>Gender</mat-label>
                                 <mat-select formControlName="gender">
                                     <mat-option value="Male">Male</mat-option>
@@ -54,7 +44,7 @@
                                 <mat-hint *ngIf="gender_control.invalid && (gender_control.touched || gender_control.dirty)">
                                     <p class="text-red-500">Please select your gender</p>
                                 </mat-hint>
-                            </mat-form-field>
+                            </mat-form-field>-->
                             <mat-form-field>
                                 <mat-label>Date of birth</mat-label>
                                 <input matInput [matDatepicker]="dp" formControlName="dateOfBirth">

@@ -26,6 +26,8 @@ import { AngularFireAuthGuardModule } from '@angular/fire/auth-guard';
 import { AngularFireFunctionsModule } from '@angular/fire/functions'
 import { EpisodeResolverService } from './resolvers/episode-resolver.service';
 import { AdminGuard } from './guards/admin.guard';
+import { SettingsResolverService } from './resolvers/settings-resolver.service';
+import { NoInternetComponent } from './shared/no-internet/no-internet.component';
 
 registerLocaleData(localeCMEN, 'en-CM', localeCMENExtra);
 
@@ -48,11 +50,30 @@ registerLocaleData(localeCMEN, 'en-CM', localeCMENExtra);
     AngularFireFunctionsModule,
     RouterModule.forRoot([
       { path: '', redirectTo: 'home', pathMatch: 'full' },
-      { path: 'home', component: HomeComponent },
+      {
+        path: 'home',
+        component: HomeComponent,
+        resolve: {
+          settings: SettingsResolverService
+        }
+      },
       { path: 'episodes', component: EpisodesComponent },
-      { path: 'contestants', component:  ContestantsComponent},
+      {
+        path: 'contestants',
+        component:  ContestantsComponent,
+        resolve: {
+          settings: SettingsResolverService
+        }
+      },
       { path: 'about', component: AboutComponent },
-      { path: 'register', component: RegisterComponent },
+      {
+        path: 'register',
+        component: RegisterComponent,
+        resolve: {
+          settings: SettingsResolverService
+        }
+      },
+      { path: 'no-connection', component: NoInternetComponent },
       {
         path: 'watch/:id',
         component: WatchEpisodeComponent,
